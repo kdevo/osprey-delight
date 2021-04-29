@@ -1,32 +1,26 @@
 <!DOCTYPE html>
-<html lang="{{ .Site.LanguageCode }}">
+<html lang="{{ .Site.LanguageCode }}" class="no-js">
   {{ partial "head.html" . }}
   <body>
     {{ partial "body-top" . }}
     <main>
 
-      <!-- About -->
-      {{ partial "about.html" . }}
-
-      <!-- Gallery -->
-      {{ if not (eq (len (where .Site.RegularPages "Section" "gallery")) 0) }}
-        {{ partial "gallery.html" . }}
-        {{ partial "modals.html" . }}
-      {{ end }}
-
-      <!-- Blog -->
-      {{ if .Site.Params.Feat.useBlog -}}
-        {{ if not (eq (len (where .Site.RegularPages "Section" "blog")) 0) }}
-          {{ partial "blog.html" . }}
-          {{ if .Site.Params.enforceSinglePage -}}
-          {{ warnf "enforceSinglePage and useBlog are both set to true. This is very likely not what you want (blog posts will always redirect to main page)"}}
-
+      {{ range $i, $m := .Site.Menus.main -}}
+          {{ $partial := printf "partials/sections/%s.html" $m.Identifier }}
+          {{ if templates.Exists $partial }}
+            <section class="{{ .Identifier }}" id="{{ replace (replace .URL "/" "") "#" "" }}">
+            {{ $page := $m.Page }}
+            {{ if eq $page nil -}}
+              {{ $page = $.Site.GetPage .Identifier }}
+            {{- end }}
+            {{ partial $partial $page }}
+            </section>
+          {{ else if .Page }}
+            <section class="default" id="{{ replace (replace .URL "/" "") "#" "" }}">
+            {{ partial "partials/sections/default.html" $m.Page }}
+            </section>
           {{- end }}
-        {{ end }}
-      {{ end }}
-
-      <!-- Contact -->
-      {{ partial "contact.html" . }}
+      {{- end }}
 
     </main>
     {{ partial "footer.html" . }}

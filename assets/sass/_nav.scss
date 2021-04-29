@@ -1,0 +1,114 @@
+@media (max-width: $mobile-breakpoint) {
+  nav {
+    // Hide menu links between logo and menu icon
+    div:not(:first-child):not(:last-child) {
+      display: none;
+    }
+
+    div.nav-toggle a {
+      display: inline-block;
+    }
+
+    div.logo {
+      padding-right: 30%;
+    }
+
+    div.nav-toggle {
+      padding-left: 30%;
+    }
+    // opacity: 0;
+  }
+}
+
+@media (max-width: 25em) {
+  nav {
+    .logo,
+    .nav-toggle {
+      max-width: 50% !important;
+    }
+  }
+}
+
+nav {
+  position: absolute;
+  z-index: 100;
+  bottom: 0;
+  width: 100%;
+  height: $vertical-rhythm * 2;
+  background-color: $primary-bg-color;
+  text-align: center;
+
+  h3 {
+    margin: 0;
+    font-family: $nav-font;
+    font-weight: 600;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+  }
+
+  img {
+    display: inline-block;
+    max-width: 10em;
+    max-height: 2.5em;
+    width: auto;
+    vertical-align: middle;
+  }
+
+  .logo,
+  .nav-toggle {
+    visibility: hidden;
+  }
+
+  .nav-toggle a {
+    display: none;
+  }
+
+  .nav-item-active a {
+    color: $accent-color;
+  }
+}
+
+.nav-fixed {
+  position: fixed;
+  top: 0;
+  bottom: auto;
+  box-shadow: 0 3px 4px rgba(0, 0, 0, .2);
+
+  @media (max-width: $mobile-breakpoint) {
+      opacity: 1;
+      transition: opacity 200ms;
+  }
+  a.icon-active > .icon {
+      color: $full-nav-bg-color;
+  }
+}
+
+.nav-full {
+  position: fixed;
+  top: 0;
+  right: -100vw;
+  bottom: 0;
+  width: 100vw;
+  height: 100%;
+
+  transform: translate(0, 0);
+  transition: .3s ease-out;
+
+
+  a, .icon {
+    color: $full-nav-fg-color;
+
+    &:hover {
+      color: $accent-color;
+    }
+  }
+}
+
+
+// Animation to translate in the font
+.nav-full.active {
+  transform: translate(-100vw, 0);
+  transition: .45s ease-in;
+  // background: $accent-color;
+  background: $full-nav-bg-color;
+}

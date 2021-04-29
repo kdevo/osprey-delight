@@ -21,25 +21,25 @@
 
   a {
     &:hover {
-      color: $accent;
+      color: $accent-color;
     }
   }
 
   article {
     a { 
-      color: $accent
+      color: $accent-color
     }
   }
 }
 
 .modal-box {
   position: relative;
-  width: 80%;
-  max-width: 1000px;
+  width: 85%;
+  max-width: 1200px;
   max-height: 85vh;
   margin: auto;
   border-radius: 9px;
-  background-color: $smoke;
+  background-color: $secondary-bg-color;
   box-shadow: 0 0 50px 0 rgba(33, 33, 33, 1);
 }
 
@@ -62,10 +62,12 @@
   align-items: center;
   justify-content: center;
   height: 100%;
-  padding: 40px;
+  padding: 4%;
 
   img {
     max-height: 100%;
+    // TODO(kdevo): Temporary fix to prevent image stretching in modal header
+    object-fit: contain;
   }
 }
 
@@ -75,36 +77,31 @@
   overflow-y: auto;
 }
 
-.term-content {
-  max-height: calc(80vh - 20vh);
-  overflow-y: auto;
-}
-
 .close {
   position: absolute;
-  top: 10px;
-  right: -4px;
-  color: $smoke;
-  font-size: 30px;
+  top: 4px;
+  right: -3px;
+  color: $gallery-modal-close-color;
+  font-size: 1.75em;
   font-weight: bold;
-  line-height: .5;
+  z-index: 100;
   transition: color .2s ease-out;
 
   &:hover,
   &:focus {
-    color: $accent;
+    color: $accent-color;
     text-decoration: none;
     cursor: pointer;
   }
 }
 
 .repo-info {
-  color: $grey;
+  color: $alt-text-color;
   a {
-    color: $grey
+    color: $alt-text-color
   }
   font-size: 0.65em;
   .icon {
-    color: $grey;
+    color: $alt-text-color;
   }
 }

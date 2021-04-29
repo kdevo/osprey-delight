@@ -29,19 +29,25 @@
     height: 100%;
     transition: .25s ease-out;
     opacity: 0;
-    background-color: $black; cursor: pointer;
+    background-color: $gallery-overlay-bg-color; 
+    cursor: pointer;
 
-    a {
-      color: $white;
+    // a {
+    //   color: $primary-bg-color;
 
-      &:hover {
-        color: $accent;
-      }
-    }
+    //   &:hover {
+    //     color: $accent-color;
+    //   }
+    // }
 
     h2 {
       margin: $vertical-rhythm;
-      color: $white;
+      margin-bottom: 0.5 * $vertical-rhythm;
+      color: $gallery-overlay-title-color;
+    }
+
+    h3 {
+      color: $gallery-overlay-subtitle-color;
     }
   }
 
@@ -52,12 +58,12 @@
     justify-content: center;
     width: 100%;
     height: 100%;
-  }
 
-  img {
-    padding: $vertical-rhythm * 3;
+    img {
+      padding: $vertical-rhythm * 3;
+      max-height: 100%;
+    }
   }
-
 
   .gallery-modal-link {
     display: flex;
@@ -68,14 +74,3 @@
     height: 100%;
   }
 }
-
-// Prevent "broken image" icon from showing up
-img.lazyload:not([src]) {
-	visibility: hidden;
-}
-
-// .lazyload, .lazyloading  {
-//   object-fit: contain;
-//   width: 100%;
-//   height: 400px;
-// }

@@ -1,5 +1,6 @@
-(function () {
+(() => {
   var realmsg = $('textarea[name=message2]')
+  // For spam protection, we use "message" as a honeypot field:
   var honeypotmsg = $('textarea[name=message]')
 
   if (realmsg === null) {
@@ -8,32 +9,28 @@
   setVisibility(realmsg, true)
   setVisibility(honeypotmsg, false)
 
-  // For spam protection, we use "message" as a honeypot field:
   honeypotmsg.removeAttribute("required")
 
-  $('#form-contact').addEventListener('submit', function (e) {
+  $('#form-contact').addEventListener('submit', (e) => {
     e.preventDefault()
 
-    // Store form field values
-    var name = $('input[name=name]').value,
-      email = $('input[name=email]').value,
-      subject = $('input[name=_subject]').value,
-      matter = $('select[name=matter]').value,
-      message = realmsg.value,
-      honeypot = honeypotmsg.value
-
+    var email = $('input[name=email]').value
     // AJAX request
     var request = new XMLHttpRequest(),
       data = {
-        name: name,
+        name: $('input[name=name]').value,
         _replyto: email,
         email: email,
-        _subject: subject,
-        _matter: matter,
-        message: message,
+        _subject: $('input[name=_subject]').value,
+        message: realmsg.value,
       }
+    var honeypot = honeypotmsg.value
     if (honeypot !== "") {
       data._anti_spam_honeypot = honeypot
+    }
+    matter = $('select[name=matter]')
+    if (matter) {
+      data._matter = matter.value
     }
 
     var sending = $('#form-sending'),
@@ -49,7 +46,7 @@
     request.setRequestHeader('Content-Type', 'application/json')
     request.setRequestHeader('Accept', 'application/json')
     // Call function when the state changes
-    request.onreadystatechange = function () {
+    request.onreadystatechange = () => {
       if (request.readyState === XMLHttpRequest.DONE) {
         if (request.status === 200) {
           // Reset form
@@ -69,9 +66,7 @@
 
           thankYouFadeIn()
         } else {
-          // Reset form
-          $('#form-contact').reset()
-
+          setVisibility(sending, false)
           setVisibility(error, true)
         }
       }

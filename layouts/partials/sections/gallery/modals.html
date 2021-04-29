@@ -1,0 +1,108 @@
+{{ range where site.RegularPages "Section" "gallery" }}
+
+  {{ $modalID := .File.BaseFileName }}
+
+  {{ $scratch := newScratch }}
+  {{ if .Params.github.repo -}}
+    {{ $scratch.Set "repo" (getJSON "https://api.github.com/repos/" .Params.github.repo) }}
+  {{- end }}
+
+  <div id="modal-{{ $modalID }}" class="modal">
+
+    <!-- Modal box -->
+    <div class="modal-box">
+      <span class="close icon icon-cancel"></span>
+      <div class="modal-container">
+        <div class="modal-header">
+          <div class="modal-header-img-container" {{ if .Params.color }}style="background-color:{{ .Params.color }}"{{ end }}>
+            {{ partial "sections/gallery/img" . }}
+          </div>
+        </div>
+
+        <div class="modal-content"{{ if .Params.terminal.lines -}} hidden id="content-{{ $modalID }}" {{- end}}>
+          <h2>{{ .Params.title }}</h2>
+
+          <!-- Content -->
+          <article class="entry-content">
+            {{ if eq (len (trim .Content "\r\n" )) 0 -}}
+              <p>{{ with $scratch.Get "repo" }}{{ .description }}{{ end }}</p>
+            {{- else -}}
+              {{ if $scratch.Get "repo" }}
+                {{ replace .Content "{github-description}" ($scratch.Get "repo").description | safeHTML }}
+              {{- else -}}
+                {{ .Content }}
+              {{- end }}
+            {{- end }}
+          </article>
+
+          <!-- Buttons -->
+          <div class="row center-xs">
+            <!-- The following two params are left for backward-compatibility -->
+            {{ with .Params.linkView }}
+              <div class="col-xs">
+                <a href="{{ . }}"><button type="submit"><span class="icon icon-angle-circled-right"></span> {{ i18n "view" }}</button></a>
+              </div>
+            {{ end }}
+            {{ with .Params.linkCode }}
+              <div class="col-xs">
+                <a href="{{ . }}"><button type="submit"><span class="icon icon-terminal"></span> {{ i18n "code" }}</button></a>
+              </div>
+            {{ end }}
+            {{ range .Params.buttons -}}
+              <div class="col-xs">
+                <a href="{{ .url }}" {{ if default false .newTab -}}target="_blank" rel="noopener"{{- end }}>
+                  <button type="submit">{{ with .icon }}<span class="icon icon-{{ . }}"></span>{{ end }} {{ i18n (default "view" .i18n) }}</button>
+                </a>
+              </div>
+            {{ end }}
+            {{ if (default true .Params.github.showButtons) }}
+              {{ with $scratch.Get "repo" -}}
+                <div class="col-xs">
+                  <a href="{{ replace (replace .archive_url "{/ref}" "") "{archive_format}" "zipball" }}" target="_blank">
+                    <button type="submit"><span class="icon icon-download"></span>{{ i18n "download" }}</button>
+                  </a>
+                </div>
+                <div class="col-xs">
+                  <a href="{{ .html_url }}" target="_blank" rel="noopener">
+                    <button type="submit"><span class="icon icon-terminal"></span>{{ i18n "code" }}</button>
+                  </a>
+                </div>
+              {{- end }}
+            {{- end }}
+          </div>
+          
+          {{ if .Params.github.showInfo }}
+            {{ with (getJSON ($scratch.Get "repo").languages_url) -}}
+            {{ $scratch.Set "repo-lang" . }}
+            {{ $sum := 0 }}
+            {{ range $lang, $val := . }}{{ $sum = add $sum $val }}{{ end }}
+            {{ $scratch.Set "repo-lang-sum" $sum }}
+            {{ $scratch.Set "repo-lang-main" (math.Round (mul 100 (div (index . ($scratch.Get "repo").language) $sum))) }}
+            {{- end }}
+            {{ with $scratch.Get "repo" }}<div class="row center-xs"><div class="repo-info">
+            <a href="{{ .html_url }}/pulse"><span class="icon icon-github-octocat"></span></a>
+            <a href="{{ .languages_url }}">{{ .language }}{{ with ($scratch.Get "repo-lang-main") }}{{ if lt . 100.0 }} ({{ . }}%) {{ end }}{{ end }}</a>
+            {{ with .license }}{{ with (getJSON .url) }} &bull; <a href="{{ .html_url }}">{{ .spdx_id }}</a> {{ end }} {{ end }}
+            {{ if gt .stargazers_count 0 }} &bull; <a href="{{ .html_url }}/stargazers"> {{ .stargazers_count }} stars </a>{{ end }}
+            {{ if gt .forks_count 0 }} &bull; <a href="{{ .html_url }}/network/members"> {{ .forks_count }} forks </a>{{ end }}
+            &bull; <a href="{{ .html_url }}/issues">{{ .open_issues_count }} open issues</a>
+          </div></div>{{ end }}{{ end }}
+        </div>
+
+        {{ if .Params.terminal.lines -}}
+          <div class="term-content">
+          <div id="term-{{ $modalID }}" data-termynal>
+          {{ range .Params.terminal.lines }}
+          {{ if eq .type "progress" }}
+            <span data-ty="{{ .type }}" data-ty-delay="{{ .wait }}" data-ty-progressPercent="{{ .data }}"></span>
+          {{ else }}
+            <span data-ty="{{ .type }}" data-ty-delay="{{ .wait }}">{{ .data }}</span>
+          {{ end }}
+        {{ end }}
+          </div>
+        </div>
+        {{- end }}
+      </div>
+    </div>
+  </div>
+{{ end }}

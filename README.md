@@ -1,68 +1,59 @@
 <a href="https://git.io/osprey-delight" target="_blank">
     <img alt="Osprey Delight Logo" src="https://raw.githubusercontent.com/kdevo/osprey-delight/master/images/osprey-delight-logo.png" width="250">
 </a>
-
 <a href="https://kdevo.netlify.app/" target="_blank">
     <img align="right" alt="Nelify Continous Deployment Status" src="https://api.netlify.com/api/v1/badges/aff9a674-45e1-4437-89f7-2aabb281780f/deploy-status">
 </a>
 
 ---
 [![GitHub Release](https://img.shields.io/github/v/release/kdevo/osprey-delight?style=flat-square&color=%230097a7&logo=github)](https://github.com/kdevo/osprey-delight/releases/latest)
-[![Hugo Minimum Version](https://img.shields.io/badge/hugo-%3E=v0.65-%230097a7?logo=hugo&style=flat-square)](https://github.com/gohugoio/hugo/releases)
+[![Hugo Minimum Version](https://img.shields.io/badge/hugo-%3E=v0.80-%230097a7?logo=hugo&style=flat-square)](https://github.com/gohugoio/hugo/releases)
 [![Project Status](https://img.shields.io/website?label=kdevo&style=flat-square&up_color=%230097a7&url=https%3A%2F%2Fkdevo.github.io)](#keep-it-up)
 
-# Osprey Delight
+## Overview
 
-Osprey **De**light is a sugar-free version of the [awesome Osprey theme](https://github.com/tomanistor/osprey) by [Toma Nistor](https://tomanistor.com/) for [Hugo](https://gohugo.io/), a fast static site generator.
+Osprey Delight is the free-minded artist's choice for a clutter-free and blazingly fast single-page portfolio. 
 
-It's a [blazingly fast](https://developers.google.com/speed/pagespeed/insights/?url=https%3A%2F%2Fkdevo.github.io%2F) minimalistic single page portfolio perfectly suited to show off your awesome work! 
+It's perfectly suited to show off your awesome work!
 
-> 💡 The theme tastes a bit different than the original (hence the *light* in the name) but also adds great new functionality - hopefully to your ***delight***. Read more about the motivation and differences of the fork [here](./MOTIVATION.md), but also check out the feature summary below!
+> It tastes a bit different than [the original great Osprey theme](https://github.com/tomanistor/osprey) and adds awesome new functionality to your **delight**.
 
-## Features
+### Showcase 
 
-- Gallery items with different types 
-    - `normal`: Just as you are used to with the original Osprey theme
-    - `github`: Magic GitHub API integration
-- Gallery images can optionally be normalized with Hugo's [amazing image processing](https://gohugo.io/content-management/image-processing/)
-- Blazingly fast loading speeds
-    - Minified JS/CSS/icon bundles using Hugo Pipes
-    - Lazy-loading of images using lazysizes
-- Contact form using Basin with Honeypot protection
-- Fancy UX
-    - Smooth scrolling plus scroll-spy
-    - Nice CSS animations
-    - Awesome icons in the footer
-- Modular theme, enable features as you want
-- Intelli-404: Automatically searches for suitable matches - never loose the link to your content
+Check out how Osprey Delight performs in the real-world:
+
+- [Protonaut Music](https://protonautmusic.com/) - Musician and top contributor whose highly individualized site got kickstarted by Osprey Delight.
+- [KDEVO](https://kdevo.github.io/) - The maintainer's site. It wouldn't be me if I would not run this theme personally. It's basically in the vanilla version.
+
+### Features
+
+- Single page made out of extensible section building blocks
+  - About: Introduce yourself
+  - Gallery: Show your work using a grid-based gallery with interactive modal boxes
+  - Blog: Lightweight blog features
+  - Contact: Contact form with Basin support and built-in spambot protection
+- Images are [asset-driven](https://gohugo.io/categories/asset-management). Use your high-quality images without the hassle of manually resizing them! 
+    - Image lazy-loading via [lazySizes](https://github.com/aFarkas/lazysizes)
+    - Blur-up technique using automatic low-quality image placeholders (LQIP)
 - SEO-optimized
-  - High PageSpeed Insights score
-  - Automatically generated structured data ensures that everyone finds you
+  - [Score 100 at PageSpeed Insights](https://developers.google.com/speed/pagespeed/insights/?url=https%3A%2F%2Fkdevo.github.io%2F). Every bit is fine-tuned for performance 
+  - Auto-generated structured ensures that everyone finds you
+- Delightful UX 
+    - Smooth scrolling plus scroll-spy
+    - Awesome social icons in footer
+    - Automatically fetches GitHub repo data for you 
+    - Sane fallbacks for No-Script/No-JS users
+    - Intelli-404: Automatically searches for suitable matches - never loose the link to your content
+- Heavily [customizable](#customize-it) - no need to maintain a fork!
 
 In general, many [open issues](https://github.com/tomanistor/osprey/issues) of the original theme have been resolved.
 
-
-## Keep it up 
+### Contribute
 
 There are multiple ways to show your support if you like this project:
-- Start [contributing](#Contributing) if you are familiar with Hugo themes/templating
-- [Donate anything to my non-profit organization](https://pyotek.dev/donate) via various options
-- Push the ![GitHub stars](https://img.shields.io/github/stars/kdevo/osprey-delight?style=social) button - a small gesture with huge effect
-
-## Screenshots
-
-Osprey Delight works with gallery items which are organized in a Flexbox grid:
-
-![Screenshot of gallery items](https://raw.githubusercontent.com/kdevo/osprey-delight/master/images/screenshot-work.png)
-
-
-The items can be opened and a modal will show up:
-
-![Screenshot of opened gallery item](https://raw.githubusercontent.com/kdevo/osprey-delight/master/images/screenshot-modal.png)
-
-
-> If you've used the original Osprey theme before, this looks pretty familiar, right? 
-> To taste the differences, it's best to simply try Osprey Delight out!
+- Start [contributing](https://github.com/kdevo/osprey-delight/blob/master/CONTRIBUTING.md)
+- Become a sponsor or [donate anything to my non-profit organization](https://pyotek.dev/donate) via various options
+- Push the [![GitHub stars](https://img.shields.io/github/stars/kdevo/osprey-delight?style=social)](https://github.com/kdevo/osprey-delight/stargazers) button - a small gesture with huge effect
 
 ## Quickstart
 
@@ -92,8 +83,22 @@ git pull
 
 ## Configuration and Usage
 
-It's best if you simply check out the commented **[exampleSite/config.toml](/exampleSite/config.toml)**!
+It's best if you simply check out the fully commented [config file](/exampleSite/config.yaml).
 This theme follows a learning-by-doing approach.
+
+### Images 
+
+This theme is asset-driven! It "knows" how to handle your precious assets, and there usually is no need for manual resizing.
+Therefore, the recommended approach for images is to provide high-res images in the [`assets` directory](https://gohugo.io/hugo-pipes/introduction/#asset-directory).
+
+The following table shows some guidelines regarding the assets:
+
+Image Type          | Config Key                        | Minimum Width          | Note
+--------------------|---------------------------------- |------------------------|---------------------------------------------------
+Logo                | `logoBig` (config.yaml)           | 200px                  | Transparent, minimum margin top/bottom
+Navbar-Logo         | `logoSmall` (config.yaml)         | 96px                   | Transparent, small margin top/bottom, prefer square format
+Gallery             | `image` (content/gallery/*)       | 400px                  | Transparent, medium margin top/bottom/left/right, prefer square format
+Background          | `background` (config.yaml)        | 1200px                 | Optional, use a high-quality JPG
 
 ### Content files
 
@@ -117,53 +122,26 @@ This is very helpful for the first time since you will get a fully documented fi
 
 > ⚠️ Please make sure that `item-name` is unique on the whole page because it will be used as an anchor/identifier!
 
+### Contact form
 
-### Custom (S)CSS
-
-Place a file named `_custom.scss` in your local `assets/sass/` folder (create the directories). This will override the theme's (empty) `_custom.scss` which is loaded in the internal main SCSS.
-
-#### Syntax Highlighting
-
-Limiting external dependencies is important when it comes to privacy as well as performance, therefore only Hugo's internal [Chroma Syntax Highlighting](https://gohugo.io/content-management/syntax-highlighting/) is supported. Here's how to use it:
-
-1. Generate a Chromastyle of your choice (in this case `solarized-dark`) as `_custom.scss` in project root: `hugo gen chromastyles --style=solarized-dark > _custom.scss`
-2. Move the file to `assets/sass/` folder
-3. Add `pygmentsUseClasses = true` to your config.toml
-
-> Refer to [the official Hugo documentation](https://gohugo.io/content-management/syntax-highlighting/) for more info. 
-
-### Data directory (optional)
-
-Optionally, Osprey Delight makes use of the [Hugo's data folder](https://gohugo.io/templates/data-templates/#the-data-folder).
-Currently, the following files can be used to configure the theme in more detail:
-
-- **terminal.json**: Configure several parameters for optional Termynal (see **config.toml** for an explanation)
-
-### Contact form: Basin
-
-Basin is a free AJAX contact form service. To use Basin, [sign up for a free account](https://usebasin.com/users/sign_up) and create a form. Copy and paste your form's URL endpoint to the `ajaxBasin` config.toml parameter. Select the `Submit this form via AJAX` option on your Basin dashboard.
+Basin is a free AJAX contact form service that is used by this theme. To use set it up, [sign up for a free account](https://usebasin.com/users/sign_up) and create a form. Copy and paste your form's URL endpoint to the `ajaxBasin` config.yaml parameter. Select the `Submit this form via AJAX` option on your Basin dashboard.
 
 ![Basin AJAX setup](https://raw.githubusercontent.com/kdevo/osprey-delight/master/images/basin-ajax-setup.png)
 
 #### Spambot protection
 
 Under Setup/"Set a Custom Honeypot Field", enter `_anti_spam_honeypot`.
-Basin will [ignore all messages that contain this specific field](https://usebasin.com/docs/features/spam-filtering). This will work since there is a hidden field that users normally do not use, but spambots will blindly input their data.
+Basin will [ignore all messages that contain this specific field](https://usebasin.com/docs/features/spam-filtering). This should work since there is a hidden field that users normally do not use, but spambots will blindly input their data.
 
 ![Basin Anti Spambot](https://raw.githubusercontent.com/kdevo/osprey-delight/master/images/basin-custom-honeypot.png)
 
-Feel free to open an issue if the protection did not work for you.
+## Next
 
+### Help wanted
 
-## Contributing 
+This README probably needs some documentation improvements for the latest features.
+Any PR regarding this is welcome and please also check out [how to contribute](CONTRIBUTING.md)!
 
-Contributions are welcome! Fork this repo and create a merge request if you implemented a feature or a bug fix that everyone can profit from. 
+### Customize it
 
-The necessary requirements for merge requests are:
-1. Theme should be kept leightweight
-2. Keep it modular: New features should be made optional if possible or if they influence performance in any way
-3. Document your changes; most importantly your config changes in **config.toml** (if there are any)
-
-## License
-
-This theme is released under the Apache 2.0 license, just like its predecessor. For more information read the [license](https://github.com/kdevo/osprey-delight/blob/master/LICENSE.md).
+Want to have full control over appearance? Check out [how to customize the theme more granularly](https://github.com/kdevo/osprey-delight/blob/master/CUSTOMIZING.md).

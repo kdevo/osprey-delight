@@ -1,37 +1,124 @@
+
+$mobile-breakpoint: 47.99em;
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font: inherit;
+  color: inherit;
+  vertical-align: baseline;
+
+  &::before,
+  &::after {
+    box-sizing: border-box;
+  }
+}
+
+html {
+  box-sizing: inherit;
+  overflow-x: hidden;
+  scroll-behavior: smooth;
+  height: 100%;
+}
+
+::selection {
+  background: $accent-color
+}
+
 body {
   @include size(p);
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  min-height: 100vh;
-  color: $black;
+  height: 100%;
+  color: $primary-fg-color;
   font-family: $font-body;
   line-height: $base-line-height;
+
+  background-color: $secondary-bg-color;
+}
+
+main {
+  transition: .4s ease-in;
+
+  &::before {
+    background-color: $primary-bg-color;
+  }
+
+  &.active {
+    transform: translate(-100vw, 0);
+    opacity: 0.4;
+  }
 }
 
 header {
-  height: 100vh;
-  background-color: $white;
+  height: 100%;
+  min-height: 100%;
+  background-color: $primary-bg-color;
+  color: $primary-fg-color;
 
   div {
     z-index: 101;
   }
 
-  img {
-    max-height: $vertical-rhythm * 6;
+  h1, h2, h3 {
+    font-family: $font-tagline;
+    color: $tagline-color;
   }
 
-  h1 {
-    font-family: $font-body;
+  img {
+    // max-height: $vertical-rhythm * 6;
+    // max-width: 100%;
+    height: auto;
+    // Actually not needed, but in case some CSS is overwritten for bad:
+    object-fit: contain;
+  }
+}
+
+.container {
+  max-width: 43.75rem; // 700px
+  margin: auto;
+  padding: $vertical-rhythm * 4 0 $vertical-rhythm * 4;
+}
+
+@media (max-width: 25em) {
+  body .container {
+    padding: $vertical-rhythm * 4 $vertical-rhythm;
+  }
+}
+
+@media (max-width: $mobile-breakpoint) {
+  body .container {
+    padding: $vertical-rhythm * 4 $vertical-rhythm;
+  }
+
+  .mobile-hidden {
+    visibility: hidden;
   }
 }
 
 footer {
-  height: $vertical-rhythm * 7;
-  background-color: $black;
+  height: $vertical-rhythm * 8;
+  background-color: $footer-bg-color;
+  // display: block;
+  padding-bottom: 2em;
+  // overflow: hidden;
 
-  div,
-  a, .icon {
-    color: $white;
+  // a {
+  //   color: $footer-icon-color;
+  // }
+  .social {
+    margin-top: $vertical-rhythm * 2;
+    margin-bottom: $vertical-rhythm * 2;
+    .icon {
+      color: $footer-icon-color;
+      font-size: 2em;
+    }
+  }
+
+  small {
+    color: $footer-text-color;
   }
 }
