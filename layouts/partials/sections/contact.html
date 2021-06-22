@@ -9,7 +9,7 @@
     </div>
   </div>
 
-  <form id="form-contact" action="https://formspree.io" method="POST">
+  <form id="form-contact" action="{{site.Params.Feat.ajaxBasin}}" method="POST">
     <div class="row center-xs">
       <div class="col-xs-12 col-sm-6"><input type="text" name="name" aria-label="name" placeholder="{{ i18n "name" }}" required></div>
       <div class="col-xs-12 col-sm-6"><input type="email" id="email" name="email" aria-label="email address" placeholder="{{ i18n "email" }}" required></div>
