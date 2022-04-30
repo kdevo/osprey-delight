@@ -1,7 +1,8 @@
 name = "Osprey Delight"
+
 license = "Apache License 2.0"
 licenselink = "https://github.com/kdevo/osprey-delight/blob/master/LICENSE.md"
-description = "Blazingly fast, beautiful and modular portfolio theme perfectly suited to highlight your work."
+description = "Blazingly fast and modular theme perfectly suited for showing your work."
 
 homepage = "https://github.com/kdevo/osprey-delight"
 demosite = "https://hugo-mods.github.io/"
