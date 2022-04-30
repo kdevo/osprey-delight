@@ -79,11 +79,12 @@
             {{ $scratch.Set "repo-lang-sum" $sum }}
             {{ $scratch.Set "repo-lang-main" (math.Round (mul 100 (div (index . ($scratch.Get "repo").language) $sum))) }}
             {{- end }}
+            
             {{ with $scratch.Get "repo" }}
               <div class="row center-xs"><div class="repo-info">
               <a href="{{ .html_url }}/pulse">{{ partial "icon" (dict "name" "github-octocat" "loader" "svg-use-text") }}</a> 
               <a href="{{ .languages_url }}">{{ .language }}{{ with ($scratch.Get "repo-lang-main") }}{{ if lt . 100.0 }} ({{ . }}%) {{ end }}{{ end }}</a>
-              {{ with .license }}{{ with (getJSON .url) }} &bull; <a href="{{ .html_url }}">{{ .spdx_id }}</a> {{ end }} {{ end }}
+              {{ with .license }}{{ with .url }}{{ with (getJSON .) }} &bull; <a href="{{ .html_url }}">{{ .spdx_id }}</a> {{ end }} {{ end }} {{ end }}
               {{ if gt .stargazers_count 0 }} &bull; <a href="{{ .html_url }}/stargazers"> {{ .stargazers_count }} stars </a>{{ end }}
               {{ if gt .forks_count 0 }} &bull; <a href="{{ .html_url }}/network/members"> {{ .forks_count }} forks </a>{{ end }}
               &bull; <a href="{{ .html_url }}/issues">{{ .open_issues_count }} open issues</a>
