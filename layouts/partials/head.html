@@ -30,12 +30,14 @@
     <meta name="author" content="{{ .Site.Params.author }}">
   {{- end }}
 
-  {{ $twitter := index (where .Site.Params.Social "type" "==" "twitter") 0 }}
-  {{ with $twitter }}
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:site" content="@{{ default $.Site.Params.author .name }}">
-    <meta name="twitter:creator" content="@{{ default $.Site.Params.author .name }}">
-  {{- end }}
+  {{ with .Site.Params.Social -}}
+    {{ $twitter := index (where . "type" "==" "twitter") 0 }}
+    {{ with $twitter }}
+      <meta name="twitter:card" content="summary_large_image">
+      <meta name="twitter:site" content="@{{ default $.Site.Params.author .name }}">
+      <meta name="twitter:creator" content="@{{ default $.Site.Params.author .name }}">
+    {{- end }}
+  {{ end -}}
 
   <meta property="og:title" content="{{ if .IsHome }}{{ .Site.Title }}{{ else if .Params.heading }}{{ .Params.heading }}{{ else }}{{ .Title }} | {{ .Site.Title }}{{ end }}">
   <meta property="og:type" content="website">
@@ -79,21 +81,17 @@
   {{- end }}
 
   <link rel="stylesheet" href="{{ (resources.Get "sass/main.scss" | resources.ExecuteAsTemplate "sass/main.scss" . | resources.ToCSS (dict "targetPath" "style.css" "outputStyle" "compressed") | resources.Fingerprint).Permalink }}">
-  <!-- <link rel="stylesheet" href="critical.css"> -->
-  <!-- <link rel="stylesheet" href="{{ (resources.Get "sass/main.scss" | resources.ExecuteAsTemplate "sass/main.scss" . | resources.ToCSS (dict "targetPath" "style.css" "outputStyle" "compressed") | resources.Fingerprint).Permalink }}" media="print" onload="this.media='all'"> -->
 
   {{ if .Site.Params.Feat.useStructuredData -}}
     {{ $s := (resources.Get "person.json" | resources.ExecuteAsTemplate "person.json" .).Content }}
     <script type="application/ld+json">
     {{ $s | safeJS }}
     </script>
-    {{/* Validate what we have rendered to prevent bad surprises */}}
+    {{/* Validate what we have rendered so that we don't render something that is not readable by a robot */}}
     {{ $_ := unmarshal $s }}
   {{- end }}
 
-  {{ if .Site.Params.Feat.useLazySizes -}}
-    <script src="{{ (resources.Get "js/vendor/lazysizes.min.js").Permalink }}" async></script>
-  {{- end }}
+  {{ partial "lazyimg-setup" . }}
 
   {{ if .Site.Params.Feat.googleTagManager }}
     <!-- Google Tag Manager -->
