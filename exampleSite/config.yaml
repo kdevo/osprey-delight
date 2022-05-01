@@ -1,7 +1,7 @@
 title: "Osprey Delight Demo"
 baseURL: "https://example.com"
 languageCode: "en-US"
-theme: "github.com/kdevo/osprey-delight"
+theme: "github.com/kdevo/osprey-delight/v5"
 tags: ["personal", "homepage", "portfolio"]
 #canonifyURLS: true
 #googleAnalytics: ""
@@ -11,10 +11,10 @@ pygmentsUseClasses: true
 
 module:
   imports:
-  - path: github.com/kdevo/osprey-delight
+  - path: github.com/kdevo/osprey-delight/v5
   # useful for local development of the theme:
   # replacements:
-  # - github.com/kdevo/osprey-delight -> ../../.
+  # - github.com/kdevo/osprey-delight/v5 -> ../../.
 
 ## Generic theme parameters:
 Params:
