@@ -10,3 +10,5 @@ github.com/hugo-mods/lazyimg v0.0.0-20211204103006-f8df703cfde3 h1:oHkDP/qoX2nAX
 github.com/hugo-mods/lazyimg v0.0.0-20211204103006-f8df703cfde3/go.mod h1:mUw/5rIlzxiJfDnKsFnZAITZ29I7n3QeDd8WwGsBmTI=
 github.com/hugo-mods/release-notify v0.0.0-20211204183217-31d5f4d05aba h1:MKmr7sMNdXcgR0fpNX1O+c2rrDF9zdZnO3G3LShx0cc=
 github.com/hugo-mods/release-notify v0.0.0-20211204183217-31d5f4d05aba/go.mod h1:RYv2eTG8LmJsxnEajLP4wkOLK3GDmwNterXVWgW6DYA=
+github.com/hugo-mods/release-notify v0.0.0-20211204191115-572031cb0d70 h1:oBpbA4hg5pzyjkFX1SmbqueOq6YR1qjhUiRCr1uLMzs=
+github.com/hugo-mods/release-notify v0.0.0-20211204191115-572031cb0d70/go.mod h1:RYv2eTG8LmJsxnEajLP4wkOLK3GDmwNterXVWgW6DYA=
