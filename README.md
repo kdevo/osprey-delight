@@ -86,7 +86,7 @@ Receive the latest features of the theme:
 hugo mod get -u
 ```
 
-> It is good practice to [check the release notes](https://github.com/kdevo/osprey-delight/releases) before upgrading (especially before using new major versions).
+> It is good practice to [check the release notes](https://github.com/kdevo/osprey-delight/releases) before upgrading.
 
 ## Configuration and Usage <a href="config"></a>
 
