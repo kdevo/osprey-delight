@@ -2,7 +2,7 @@
     "@context" "http://www.schema.org"
     "@type" "Person"
     "@id" .Site.BaseURL 
-    "name" .Site.Params.author 
+    "name" site.Params.author 
     "url" .Site.BaseURL 
     "description" .Site.Params.Description }}
 {{ with .Site.Params.Feat.structuredDataGitHubUser }}
@@ -11,7 +11,7 @@
             "image" .avatar_url 
             "email" .email 
             "address" .location }}
-        {{ if ne .login .Site.Params.author }}
+        {{ if ne .login site.Params.author }}
         {{ $github = merge (dict "alternateName" .login) $github }}
         {{ end }}
 
