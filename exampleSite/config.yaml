@@ -5,7 +5,7 @@ theme: "github.com/kdevo/osprey-delight/v5"
 tags: ["personal", "homepage", "portfolio"]
 #canonifyURLS: true
 #googleAnalytics: ""
-disableKinds: ["taxonomy", "taxonomyTerm"]
+disableKinds: ["taxonomy"]
 enableEmoji: true
 pygmentsUseClasses: true
 
@@ -14,11 +14,12 @@ module:
   - path: github.com/kdevo/osprey-delight/v5
   # useful for local development of the theme:
   # replacements:
-  # - github.com/kdevo/osprey-delight/v5 -> ../../.
+  # - github.com/kdevo/osprey-delight/v5 -> ../.
 
 ## Generic theme parameters:
 Params:
-  author: "kdevo"
+  author:
+    name: "kdevo"
   description: "Osprey Delight: Example Site"
 
   # logoBig appears at the top of the page. Use a path relative to the assets dir for auto-resizing. 
