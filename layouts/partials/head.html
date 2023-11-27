@@ -26,16 +26,16 @@
     <meta name="description" content="{{ .Summary }}">
   {{- end }}
 
-  {{ if site.Params.author -}}
-    <meta name="author" content="{{ site.Params.author }}">
+  {{ if (default site.Params.author site.Params.author.name) -}}
+    <meta name="author" content="{{ (default site.Params.author site.Params.author.name) }}">
   {{- end }}
 
   {{ with .Site.Params.Social -}}
     {{ $twitter := index (where . "type" "==" "twitter") 0 }}
     {{ with $twitter }}
       <meta name="twitter:card" content="summary_large_image">
-      <meta name="twitter:site" content="@{{ default site.Params.author .name }}">
-      <meta name="twitter:creator" content="@{{ default site.Params.author .name }}">
+      <meta name="twitter:site" content="@{{ default (default site.Params.author site.Params.author.name) .name }}">
+      <meta name="twitter:creator" content="@{{ default (default site.Params.author site.Params.author.name) .name }}">
     {{- end }}
   {{ end -}}
 

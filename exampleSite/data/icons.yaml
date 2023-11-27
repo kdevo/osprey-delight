@@ -1,6 +1,10 @@
 # Add custom icons and use them accordingly as social icon as 'type' in config.yaml:
 spotify: fab spotify
 bandcamp: fab bandcamp
+twitter: fab twitter
+linkedin: fab linkedin
+stackoverflow: fab stack-overflow
+
 heart: fas heart
 gift: fas gift
 
