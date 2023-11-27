@@ -2,7 +2,7 @@
     "@context" "http://www.schema.org"
     "@type" "Person"
     "@id" .Site.BaseURL 
-    "name" default site.Params.author site.Params.author.name
+    "name" (default site.Params.author site.Params.author.name)
     "url" .Site.BaseURL 
     "description" .Site.Params.Description }}
 {{ with .Site.Params.Feat.structuredDataGitHubUser }}

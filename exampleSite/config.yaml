@@ -14,7 +14,7 @@ module:
   - path: github.com/kdevo/osprey-delight/v5
   # useful for local development of the theme:
   # replacements:
-  # - github.com/kdevo/osprey-delight/v5 -> ../.
+  # - github.com/kdevo/osprey-delight/v5 -> ../../.
 
 ## Generic theme parameters:
 Params:
@@ -85,7 +85,7 @@ Params:
 
     # useStructuredData for your own https://schema.org/Person (SEO-friendly).
     #   This will be auto-generated dependent on the information you provide in this configuration.
-    useStructuredData: false
+    useStructuredData: true
 
     # structuredDataGitHubUser will tell the theme to use your USERNAME for querying the GitHub API to fetch more information about you for structured data.
     #   This will use information that is publically available about your GitHub user profile at https://api.github.com/users/{USERNAME}.
