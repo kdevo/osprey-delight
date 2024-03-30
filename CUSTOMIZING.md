@@ -79,7 +79,7 @@ In this section, you can learn how to customize the modules.
 
 To add an icon to the footer (say SoundCloud, [as in this discussion](https://github.com/kdevo/osprey-delight/discussions/19)):
 
-1. Create the file `data/icons.yml` in your project root (see also the [theme-internal `icons.yml`](./layouts/themes/osrprey-delight/data/icons.yml))
+1. Create the file `data/icons.yml` in your project root (see also the [theme-internal `icons.yaml`](./data/icons.yaml))
 2. Add the line `soundcloud: fab soundcloud` to it
 3. Check out all options for [the pattern](https://github.com/hugo-mods/icons#data-pattern) used by this theme
 
