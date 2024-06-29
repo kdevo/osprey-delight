@@ -103,9 +103,8 @@
     <!-- End Google Tag Manager -->
   {{ end }}
 
-  {{ if .Site.GoogleAnalytics }}
-    {{ template "_internal/google_analytics_async.html" . }}
+  {{ if .Site.Config.Services.GoogleAnalytics.ID }}
+    {{ template "_internal/google_analytics.html" . }}
   {{ end }}
-
   {{ partial "head-extended.html" . }}
 </head>
