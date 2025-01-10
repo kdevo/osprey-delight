@@ -80,7 +80,7 @@
     <link href="{{ .Permalink }}" rel="alternate" type="application/rss+xml" title="{{ $.Site.Title }}">
   {{- end }}
 
-  {{ /* resources.ToCSS was deprecated in 0.128.0 */}}
+  {{/* resources.ToCSS was deprecated in 0.128.0 */}}
   {{ if ge .Site.Hugo.Version "0.128.0" -}}
   <link rel="stylesheet" href="{{ (resources.Get "sass/main.scss" | resources.ExecuteAsTemplate "sass/main.scss" . | css.Sass (dict "targetPath" "style.css" "outputStyle" "compressed") | resources.Fingerprint).Permalink }}">
   {{- else -}}
