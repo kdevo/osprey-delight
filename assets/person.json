@@ -6,7 +6,7 @@
     "url" .Site.BaseURL 
     "description" .Site.Params.Description }}
 {{ with .Site.Params.Feat.structuredDataGitHubUser }}
-    {{ with (getJSON "https://api.github.com/users/" .) }}
+    {{ with (partial "getJSON" (slice "https://api.github.com/users/" .)) }}
         {{ $github := dict 
             "image" .avatar_url 
             "email" .email 
@@ -16,9 +16,9 @@
         {{ end }}
 
         {{ $affiliation := slice }}
-        {{ with (getJSON .organizations_url) }}
+        {{ with (partial "getJSON" .organizations_url) }}
             {{ range $i, $org := . -}}
-                {{ with (getJSON .url) -}}
+                {{ with (partial "getJSON" .url) -}}
                     {{ $org := dict 
                         "@type" "Organization" 
                         "name" .name

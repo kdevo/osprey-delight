@@ -1,0 +1,11 @@
+{{/* getJSON was deprecated in 0.123.0 and we need to use the following construct: */}}
+{{ $url := urls.JoinPath . }}
+{{ $result := false }}
+{{ if ge site.Hugo.Version "0.123.0" -}}
+    {{ with resources.GetRemote $url }}
+        {{ $result = . | transform.Unmarshal }}
+    {{ end }}
+{{ else }}
+    {{ $result = getJSON $url }}
+{{ end }}
+{{ return $result }}
